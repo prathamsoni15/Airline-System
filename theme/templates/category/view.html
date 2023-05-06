@@ -1,0 +1,45 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Category
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Category</h3>
+        <a href="{% url 'bulkUpload' %}" class="btn btn-success">BulkUpload</a>
+        <a href="{% url 'download_csv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addCategory' %}">Add Data</a> 
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>description</td>
+                    <td>actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in categories %}
+                <tr>
+                    
+                    <td>{{ data.title }}</td>
+                    <td>{{ data.description }}</td>
+                    <td>
+                        <a href="{% url 'updateCategory' data.id %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deleteCategory' data.id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

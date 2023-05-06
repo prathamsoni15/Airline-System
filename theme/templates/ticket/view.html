@@ -1,0 +1,49 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Ticket
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Ticket</h3>
+        <a href="{% url 'download_ticketcsv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addTicket' %}">Add Ticket</a> 
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>ticket_id</td>
+                    <td>Booking_id</td>
+                    <td>Reg_id</td>
+                    <td>destination_id</td>
+                    <td>depart_date</td>
+                    <td>return_date</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in tickets %}
+                <tr>
+                    <td>{{ data.ticket_id }}</td>
+                    <td>{{ data.Booking_id }}</td>
+                    <td>{{ data.Reg_id }}</td>
+                    <td>{{ data.destination_id }}</td>
+                    <td>{{ data.depart_date }}</td>
+                    <td>{{ data.return_date }}
+                        <a href="{% url 'updateCargo' data.ticket_id %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deleteCargo' data.ticket_id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

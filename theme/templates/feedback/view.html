@@ -1,0 +1,42 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Feedback
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Feedback</h3>
+        <a href="{% url 'download_Feedbackcsv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addFeedback' %}">Add Data</a> 
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>Quality_Score</td>
+                    <td>Message</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in feedbacks %}
+                <tr>
+                    
+                    <td>{{ data.Quality_Score }}</td>
+                    <td>{{ data.Message }}
+                        <a href="{% url 'updateFeedback' data.id %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deleteFeedback' data.id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

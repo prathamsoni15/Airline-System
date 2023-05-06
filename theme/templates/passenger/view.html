@@ -1,0 +1,52 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Passenger
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Passenger</h3>
+        <a href="{% url 'download_passengercsv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addPassenger' %}">Add Passenger</a> 
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>Reg_id</td>
+                    <td>passport_no</td>
+                    <td>f_name</td>
+                    <td>l_name</td>
+                    <td>email</td>
+                    <td>address</td>
+                    <td>contact</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in passengers %}
+                <tr>
+                    
+                    <td>{{ data.Reg_id }}</td>
+                    <td>{{ data.passport_no }}</td>
+                    <td>{{ data.f_name }}</td>
+                    <td>{{ data.l_name }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ data.address }}</td>
+                    <td>{{ data.contact }}
+                        <a href="{% url 'updatePassenger' data.Reg_id %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deletePassenger' data.Reg_id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

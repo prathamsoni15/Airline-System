@@ -1,0 +1,49 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Flight Status
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Status</h3>
+        <a href="{% url 'download_statuscsv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addStatus' %}">Add Data</a> 
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>Flightno</td>
+                    <td>Depature Date</td>
+                    <td>Origin</td>
+                    <td>Destination</td>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in statuses %}
+                <tr>
+                    
+                    <td>{{ data.Flightno }}</td>
+                    <td>{{ data.DepartureDate }}</td>
+                    <td>{{ data.Origin }}</td>
+                    <td>{{ data.Destination }}</td>
+                    <td>
+                        <a href="{% url 'updateStatus' data.id %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deleteStatus' data.id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

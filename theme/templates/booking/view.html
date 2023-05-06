@@ -1,0 +1,47 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Booking
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Booking</h3>
+        <a href="{% url 'download_bookingcsv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addBooking' %}">Add Data</a> 
+        
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>Booking_id</td>
+                    <td>Firstname</td>
+                    <td>Lastname</td>
+                    <td>Mobile_number</td>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in bookings %}
+                <tr>
+                    
+                    <td>{{ data.Booking_id }}</td>
+                    <td>{{ data.Firstname }}</td>
+                    <td>{{ data.Lastname }}</td>
+                    <td>{{ data.Mobile_number }}
+                        <a href="{% url 'updateBooking' data.Booking_id %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deleteBooking' data.Booking_id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

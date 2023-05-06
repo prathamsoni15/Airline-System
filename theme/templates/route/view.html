@@ -1,0 +1,47 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Route
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Route</h3>
+        <a href="{% url 'download_routecsv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addRoute' %}">Add Route</a> 
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>Route_No</td>
+                    <td>Description</td>
+                    <td>From</td>
+                    <td>To</td>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in routes %}
+                <tr>
+                    
+                    <td>{{ data.Route_No }}</td>
+                    <td>{{ data.Description }}</td>
+                    <td>{{ data.From }}</td>
+                    <td>{{ data.To }}
+                        <a href="{% url 'updateRoute' data.id %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deleteRoute' data.id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<!--<script>
+  alert('{{ message }}')
+</script>-->
+<!--{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>-->
+<!-- {% endif %} -->
+<head>
+  <meta charset="UTF-8">
+  <!--<title>CodePen - login &amp; signup form with html css &amp; javascript</title>-->
+  <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+
+</head>
+<body>
+{% if messages %}
+  {% for message in messages %}
+    {% if message.tags %} <script>alert('{{ message }}')</script>{% endif %}
+  {% endfor %}
+{% endif %}
+  
+<!-- partial:index.partial.html -->
+<div class="wrapper">
+      <div class="title-text">
+        <div class="title login">Login Form</div>
+        <div class="title signup">Signup Form</div>
+      </div>
+      <div class="form-container">
+        <div class="slide-controls">
+          <input type="radio" name="slide" id="login" checked>
+          <input type="radio" name="slide" id="signup">
+          <label for="login" class="slide login">Login</label>
+          <label for="signup" class="slide signup">Signup</label>
+          <div class="slider-tab"></div>
+        </div>
+        <div class="form-inner">
+        <form action="{% url 'loginHandle' %}" method="POST" class="login">
+            {% csrf_token %}
+            <div class="field">
+              <input class="input--style-3" type="text" placeholder="Username" name="username" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Password" name="password" required>
+            </div>
+            <div class="pass-link"><a href="#">Forgot password?</a></div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Login">
+            </div>
+            <div class="signup-link">Not a member? <a href="">Signup now</a></div>
+          </form> 
+          <form action="{% url 'sup' %}" method="POST"  class="signup" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="field">
+              <input class="input--style-3" type="text" placeholder="Username" name="username" required>
+            </div>
+            <div class="field">
+              <input type="text" placeholder="Email Address" name="email" required>
+            </div>
+            <div class="field"> 
+              <input class="input--style-3" type="text" placeholder="Phone" name="phone" required>
+            </div>
+            
+            <div class="field">
+              <input type="password" placeholder="Password" name="password" required>
+            </div>
+            
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Signup">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+<!-- partial -->
+  <script  src="{% static 'templates/js/script.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+django.utils.autoreload INFO 2023-05-06 17:41:32,877 autoreload 11172 7188 Watching for file changes with StatReloader
+theme.middleware.demoMiddleware WARNING 2023-05-06 17:41:40,054 demoMiddleware 11172 8712 Middleware called in new in call
+theme.middleware.demoMiddleware WARNING 2023-05-06 17:41:53,415 demoMiddleware 11172 4620 Middleware called in new in call
+theme.middleware.demoMiddleware WARNING 2023-05-06 17:41:56,656 demoMiddleware 11172 4620 Middleware called in new in call

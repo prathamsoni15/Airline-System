@@ -1,0 +1,49 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Car
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Car</h3>
+        <a href="{% url 'download_carcsv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addCar' %}">Add Data</a> 
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>Carname</td> 
+                    <td>Pickup</td>
+                    <td>Dropoff</td>
+                    <td>PickupDate</td>
+                    <td>PickupTime</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in cars %}
+                <tr>
+                    <td>{{ data.Carname }}</td>
+                    <td>{{ data.Pickup }}</td>
+                    <td>{{ data.Dropoff }}</td>
+                    <td>{{ data.PickupDate }}</td>
+                    <td>{{ data.PickupTime }}</td>
+                    <td>{{ data.Weight }}</td>
+                    <td>{{ data.Product }}
+                        <a href="{% url 'updateCar' data.id %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deleteCar' data.id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

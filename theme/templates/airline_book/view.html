@@ -1,0 +1,53 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Airline
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Airline</h3>
+        <a href="{% url 'bulkUpload' %}" class="btn btn-success">BulkUpload</a>
+        <a href="{% url 'download_airlinecsv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addAirline' %}">Add Data</a> 
+        
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>Airline_id</td>
+                    <td>From</td>
+                    <td>To</td>
+                    <td>Departing Date</td>
+                    <td>Returning Date</td>
+                    <td>Class</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in airlines %}
+                <tr>
+                    
+                    <td>{{ data.Airline_id }}</td>
+                    <td>{{ data.From }}</td>
+                    <td>{{ data.To }}</td>
+                    <td>{{ data.Departing_Date }}</td>
+                    <td>{{ data.Returning_Date }}</td>
+                    <td>{{ data.Class }}</td>
+                    <td>
+                        <a href="{% url 'updateAirline' data.Airline_id %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deleteAirline' data.Airline_id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

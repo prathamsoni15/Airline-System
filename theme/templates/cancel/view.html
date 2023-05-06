@@ -1,0 +1,46 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Cargo
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Cancel</h3>
+        <a href="{% url 'download_cancelcsv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addCancel' %}">Cancel</a> 
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>Cancel_id</td>
+                    <td>Booking_id</td>
+                    <td>Cancel_Date</td>
+                    <td>Refund_Money</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in cancels %}
+                <tr>
+                    
+                    <td>{{ data.Cancel_id }}</td>
+                    <td>{{ data.Booking_id }}</td>
+                    <td>{{ data.Cancel_Date }}</td>
+                    <td>{{ data.Refund_Money }}
+                        <a href="{% url 'updateCancel' data.Cancel_id %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deleteCancel' data.Cancel_id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

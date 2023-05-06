@@ -1,0 +1,49 @@
+{% extends 'index1.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+        Branch
+{% endblock %}
+{% block content %}
+<br>
+<div class="card col-12">
+    <div class="card-header">
+        <h3 class="card-title">Branch</h3>
+        <a href="{% url 'download_branchcsv' %}" class="btn btn-success">Download Csv</a>
+    </div>
+    <button>
+        <a href="{% url 'addBranch' %}">Add Branch<a>
+
+    </button>
+    <div class="card-body">
+        <table id="example1" class="table">
+            <thead>
+                <tr>
+                    <td>Branch_code</td>
+                    <td>Add1</td>
+                    <td>Add2</td>
+                    <td>City</td>
+                    <td>Telephone</td>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in branches %}
+                <tr>
+                    
+                    <td>{{ data.Branch_code }}</td>
+                    <td>{{ data.Add1 }}</td>
+                    <td>{{ data.Add2 }}</td>
+                    <td>{{ data.City }}</td>
+                    <td>{{ data.Telephone }}
+                        <a href="{% url 'updateBranch' data.Branch_code %}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'deleteBranch' data.Branch_code %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
